@@ -44,7 +44,7 @@ def agregar_mensajes_log(texto):
     db.session.commit()
 
 #Token de verificacion para la configuración
-TOKER_FUELCHECK = "FUELCHECK"
+TOKEN_FUELCHECK = "FUELCHECK"
 
 @app.route('/webhook', methods=['GET','POST'])
 def webhook():
@@ -59,12 +59,13 @@ def verificar_token(req):
     token= req.args.get('hub.verify_token')
     challenge = req.args.get('hub.challenge')
 
-    if challenge and token == TOKER_FUELCHECK:
+    if challenge and token == TOKEN_FUELCHECK:
         return challenge
     else:
-        return jsonify({'error: Token Invalido'}), 401
+        return jsonify({'error': 'Token Invalido'}), 401
 
 def recibir_mensajes(req):
+    req = request.get_json()
     agregar_mensajes_log(req)
     return jsonify({'message':'EVENT_RECEIVED'})
 
