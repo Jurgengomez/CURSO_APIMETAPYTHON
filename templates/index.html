@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Hola mundo con Flask</title>
+    <title>WhatsApp Bot Dashboard</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-    <style>
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    
+    <!-- Enlace a los archivos estáticos usando Jinja2 -->
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='main.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </head>
 
 <body>
-    <h2>Registro de Mensajes</h2>
-    <table>
-        <tr>
-            <th>Fecha y Hora</th>
-            <th>Mensaje</th>
-        </tr>
-        {% for registro in registros %}
-        <tr>
-            <td>{{ registro.fecha_y_hora }}</td>
-            <td>{{ registro.texto }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
+    <div class="dashboard-container">
+        <header>
+            <h2>WhatsApp Chatbot Dashboard</h2>
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                Servidor Activo
+            </div>
+        </header>
 
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Fecha y Hora</th>
+                        <th style="width: 75%;">Detalle del Evento (JSON / Log)</th>
+                    </tr>
+                </thead>
+                <tbody id="log-table-body">
+                    {% if registros %}
+                        {% for registro in registros %}
+                        <tr>
+                            <td class="time-cell">{{ registro.fecha_y_hora.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>
+                                <!-- main.js reemplazará y formateará esto de forma dinámica -->
+                                <pre class="json-block">{{ registro.texto }}</pre>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="2" style="text-align: center; color: var(--text-secondary);">
+                                No hay registros aún. Envía un mensaje desde WhatsApp.
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
 </html>
