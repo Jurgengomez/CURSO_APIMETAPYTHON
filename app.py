@@ -161,13 +161,12 @@ def enviar_mensajes_whatsapp(texto, number):
     elif "2" in texto:
         data = {
             "messaging_product": "whatsapp",
+            "recipient_type": "individual",
             "to": number,
-            "type": "location",
-            "location": {
-                "latitude": "-12.067158831865067",
-                "longitude": "-77.03377940839486",
-                "name": "Estadio Nacional del Perú",
-                "address": "Cercado de Lima"
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Perfecto. Dime que corte quieres registrar."
             }
         }
     elif "3" in texto:
