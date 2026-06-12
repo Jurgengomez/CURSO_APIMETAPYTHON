@@ -1,6 +1,6 @@
 # pyrefly: ignore [missing-import]
 from flask import Flask, request, jsonify, render_template
-
+# pyrefly: ignore [missing-import]
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import http.client
@@ -127,6 +127,12 @@ def recibir_mensajes(req):
         traceback.print_exc()
         return jsonify({'message': 'EVENT_RECEIVED'})
 
+#CONSULTAS DE LA BD 
+#CONSULTAS DE CORTES
+#REGISTROS DE CORTES
+
+
+
 def enviar_mensajes_whatsapp(texto, number):
     texto = texto.lower()
 
@@ -138,7 +144,7 @@ def enviar_mensajes_whatsapp(texto, number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "🚀 Hola, ¿Cómo estás? Bienvenido."
+                "body": "🚀 Hola, ¿Cómo estás? Bienvenido.\n\n¿Qué consultas deseas realizar?\nEscribe el número a consultar:\n\n1️⃣. Consultas\n2️⃣. Registro"
             }
         }
     elif "1" in texto:
@@ -149,7 +155,7 @@ def enviar_mensajes_whatsapp(texto, number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                "body": "Perfecto. Dime que vehículo quieres consultar."
             }
         }
     elif "2" in texto:
