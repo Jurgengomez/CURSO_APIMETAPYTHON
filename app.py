@@ -1,6 +1,6 @@
 # pyrefly: ignore [missing-import]
 from flask import Flask, request, jsonify, render_template
-# pyrefly: ignore [missing-import]
+
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import http.client
@@ -395,13 +395,16 @@ def enviar_mensajes_whatsapp(texto, number):
     connection = http.client.HTTPSConnection("graph.facebook.com")
 
     try:
-        connection.request("POST", "/v18.0/117721278011867/messages", data, headers)
+        connection.request("POST", "/v18.0/1057484407458553/messages", data, headers)
         response = connection.getresponse()
+        response_body = response.read().decode('utf-8')
         print("Envío WhatsApp Status:", response.status, response.reason)
+        # Registrar la respuesta de Meta para poder depurarla
+        agregar_mensajes_log(f"Respuesta Meta (Status {response.status}): {response_body}")
     except Exception as e:
         print("Error al enviar WhatsApp:")
         traceback.print_exc()
-        agregar_mensajes_log(str(e))
+        agregar_mensajes_log(f"Error al enviar: {str(e)}")
     finally:
         connection.close()
 
