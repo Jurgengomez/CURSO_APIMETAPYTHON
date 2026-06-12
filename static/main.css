@@ -6,7 +6,8 @@
     --border-color: rgba(255, 255, 255, 0.08);
     --text-primary: #f3f4f6;
     --text-secondary: #9ca3af;
-    --accent-color: #10b981; /* Emerald/Green representing WhatsApp */
+    --accent-color: #10b981;
+    /* Emerald/Green representing WhatsApp */
     --accent-glow: rgba(16, 185, 129, 0.15);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
@@ -26,7 +27,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
-    background-image: 
+    background-image:
         radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
 }
@@ -57,8 +58,8 @@ h2 {
     font-size: 24px;
     font-weight: 800;
     letter-spacing: -0.5px;
-    background: linear-gradient(to right, #10b981, #3b82f6);
-    -webkit-background-clip: text;
+    background: linear-gradient(to right, #ffd904, #f0ce12);
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -151,24 +152,45 @@ tr:hover td {
     width: 6px;
     height: 6px;
 }
+
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.6; }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
